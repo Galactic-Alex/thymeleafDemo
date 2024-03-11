@@ -15,18 +15,16 @@ public class CarController {
 
     private final CarService carService;
 
-    private final PropertyHelper propertyHelper;
 
     @Autowired
-    public CarController(CarService carService, PropertyHelper propertyHelper) {
+    public CarController(CarService carService) {
         this.carService = carService;
-        this.propertyHelper = propertyHelper;
     }
 
     @GetMapping(path = "cars")
     public String cars(@RequestParam int count, @RequestParam(required = false) String sortBy, HttpServletResponse response, Model model) throws IOException {
 
-        if (!propertyHelper.isRequestedSortOn(sortBy)) {
+        if (!carService.isRequestedSortOn(sortBy)) {
             response.sendError(403, "Requested sort is off or doesn't exist");
             return null;
         }

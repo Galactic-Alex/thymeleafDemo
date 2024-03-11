@@ -1,6 +1,6 @@
-#App properties
-maxCar: 3
-isSortByIdOn: "true"
-isSortByModelOn: "false"
-isSortByMileageOn: "true"
-isSortBySeriesOn: "false"
+#Car properties
+car.maxCar: 3
+car.isSortByIdOn: "true"
+car.isSortByModelOn: "false"
+car.isSortByMileageOn: "true"
+car.isSortBySeriesOn: "false"
