@@ -24,24 +24,14 @@ public class CarController {
     @GetMapping(path = "cars")
     public String cars(@RequestParam int count, @RequestParam(required = false) String sortBy, HttpServletResponse response, Model model) throws IOException {
 
-        if (!carService.isRequestedSortOn(sortBy)) {
-            response.sendError(403, "Requested sort is off or doesn't exist");
-            return null;
-        }
-
-        if (count == 0) {
-            response.sendError(400, "Count can't be 0");
-            return null;
-        }
-
-        model.addAttribute("cars", carService.listCarsByCount(count, sortBy));
+        model.addAttribute("cars", carService.listCarsByCount(count, sortBy, response));
 
         return "cars";
     }
 
     @GetMapping("/")
-    public String getHomePage(Model model) {
-        model.addAttribute("firstCar", carService.listCarsByCount(1, null));
+    public String getHomePage(Model model, HttpServletResponse response) throws IOException {
+        model.addAttribute("firstCar", carService.listCarsByCount(1, null, response));
         return "index_page";
     }
 }

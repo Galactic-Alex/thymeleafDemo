@@ -1,6 +1,9 @@
 #Car properties
-car.maxCar: 3
-car.isSortByIdOn: "true"
-car.isSortByModelOn: "false"
-car.isSortByMileageOn: "true"
-car.isSortBySeriesOn: "false"
+
+car:
+  maxCar: 3
+  isSortEnabledMap:
+    id: "true"
+    model: "false"
+    mileage: "true"
+    series: "false"
