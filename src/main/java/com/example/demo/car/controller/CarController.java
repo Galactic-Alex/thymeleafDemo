@@ -36,11 +36,8 @@ public class CarController {
             return null;
         }
 
-        if (sortBy.isEmpty()) {
-            model.addAttribute("cars", carService.listCarsByCount(count));
-        } else {
-            model.addAttribute("cars", carService.listCarsByCount(count, sortBy));
-        }
+        model.addAttribute("cars", carService.listCarsByCount(count, sortBy));
+
         return "cars";
     }
 

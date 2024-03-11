@@ -32,7 +32,7 @@ public class PropertyHelper {
 
     public boolean isRequestedSortOn(String sortProperty) {
 
-        if (sortProperty.isEmpty()) {
+        if (sortProperty == null || sortProperty.isEmpty()) {
             return false;
         }
 

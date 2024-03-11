@@ -24,18 +24,11 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
-    public List<Car> listCarsByCount(int count) {
-        if (count >= maxCar) {
-            return carRepository.findAll();
-        }
-        Pageable pageable = PageRequest.of(0, count);
-        return carRepository.findAll(pageable).toList();
-    }
-
     public List<Car> listCarsByCount(int count, String sortParam) {
         if (count >= maxCar) {
             count = Integer.MAX_VALUE;
         }
+
         Pageable pageable = PageRequest.of(0, count, Sort.by(sortParam));
         return carRepository.findAll(pageable).toList();
     }
