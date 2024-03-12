@@ -2,7 +2,7 @@ package com.example.demo.car.service;
 
 
 import com.example.demo.car.Car;
-import com.example.demo.car.config.PropertiesConfig;
+import com.example.demo.car.properties.PropertiesConfig;
 import com.example.demo.car.repository.CarRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -32,6 +33,10 @@ public class CarService {
             return null;
         }
 
+        if (count == 0) {
+            return new ArrayList<>();
+        }
+
         if (count >= propertiesConfig.getMaxCar()) {
             count = Integer.MAX_VALUE;
         }
@@ -47,12 +52,12 @@ public class CarService {
     }
     private boolean isRequestRight(int count, String sortParam, HttpServletResponse response) throws IOException {
         if (!isRequestedSortOn(sortParam)) {
-            response.sendError(403, "Requested sort is off or doesn't exist");
+            response.sendError(406, "Requested sort is off or doesn't exist");
             return false;
         }
 
-        if (count == 0) {
-            response.sendError(400, "Count can't be 0");
+        if (count < 0) {
+            response.sendError(406, "Count can't be negative");
             return false;
         }
 

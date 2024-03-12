@@ -1,4 +1,4 @@
-package com.example.demo.car.config;
+package com.example.demo.car.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
